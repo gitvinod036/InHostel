@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Submitted - InHostel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #e2e8f0 100%);
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    .icon-wrap {
+      width: 64px;
+      height: 64px;
+      background-color: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .icon-wrap svg {
+      width: 32px;
+      height: 32px;
+      stroke: #16a34a;
+    }
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+    p.subtitle {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .details-table {
+      width: 100%;
+      background-color: #f8fafc;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 13px;
+    }
+    .row:last-child {
+      border-bottom: none;
+    }
+    .row .label {
+      color: #64748b;
+      font-weight: 500;
+    }
+    .row .value {
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #fef3c7;
+      color: #d97706;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .info-box {
+      background-color: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+      color: #1e40af;
+      line-height: 1.5;
+    }
+    .footer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">InHostel</div>
+    <div class="icon-wrap">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    </div>
+    <h1>Registration Submitted Successfully</h1>
+    <p class="subtitle">Your application has been received and submitted to the hostel owner for review.</p>
+    
+    <div class="details-table">
+      <div class="row">
+        <span class="label">Hostel</span>
+        <span class="value">{{ hostel.hostel_name }}</span>
+      </div>
+      <div class="row">
+        <span class="label">Resident Name</span>
+        <span class="value">{{ resident.full_name }}</span>
+      </div>
+      <div class="row">
+        <span class="label">Mobile Number</span>
+        <span class="value">{{ resident.mobile_number }}</span>
+      </div>
+      <div class="row">
+        <span class="label">Joining Date</span>
+        <span class="value">{{ resident.joining_date }}</span>
+      </div>
+      <div class="row">
+        <span class="label">Status</span>
+        <span class="value"><span class="badge">PENDING APPROVAL</span></span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      The hostel owner will review your details, verify your documents, and allocate your room and cot.
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; InHostel. All rights reserved.
+  </div>
+</body>
+</html>

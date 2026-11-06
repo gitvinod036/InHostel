@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resident Registration - {{ hostel.hostel_name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+    .container {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .brand {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #2563eb;
+      margin-bottom: 6px;
+    }
+    .hostel-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .hostel-addr {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .section-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .alert-error {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 20px;
+      color: #991b1b;
+      font-size: 13px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    label .required {
+      color: #dc2626;
+      margin-left: 2px;
+    }
+    .input-hint {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #0f172a;
+      background-color: #ffffff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .field-error {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .file-input-wrapper {
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 18px 14px;
+      text-align: center;
+      background-color: #f8fafc;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .file-input-wrapper:hover {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+    }
+    .file-input-wrapper input[type="file"] {
+      display: none;
+    }
+    .file-icon {
+      width: 28px;
+      height: 28px;
+      color: #64748b;
+      margin: 0 auto 6px;
+    }
+    .file-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2563eb;
+      cursor: pointer;
+    }
+    .file-selected-name {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #16a34a;
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #1d4ed8;
+    }
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+    .submit-btn:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand">InHostel</div>
+      <h1 class="hostel-title">{{ hostel.hostel_name }}</h1>
+      {% if hostel.address %}
+      <p class="hostel-addr">{{ hostel.address }}</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h2 class="section-heading">Resident Registration</h2>
+      <p class="section-subtitle">Please provide your details and documents to register at this hostel.</p>
+
+      {% if form_errors.general %}
+      <div class="alert-error">
+        {{ form_errors.general }}
+      </div>
+      {% endif %}
+
+      <form method="POST" enctype="multipart/form-data" id="registrationForm">
+        {% csrf_token %}
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="full_name">Full Name <span class="required">*</span></label>
+          <input type="text" id="full_name" name="full_name" required placeholder="Enter your full name" value="{{ form_data.full_name|default:'' }}">
+          {% if form_errors.full_name %}
+          <div class="field-error">{{ form_errors.full_name }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="form-group">
+          <label for="mobile_number">Mobile Number <span class="required">*</span></label>
+          <input type="tel" id="mobile_number" name="mobile_number" required placeholder="10-digit mobile number" maxlength="15" value="{{ form_data.mobile_number|default:'' }}">
+          <div class="input-hint">Will be used for owner communication and billing</div>
+          {% if form_errors.mobile_number %}
+          <div class="field-error">{{ form_errors.mobile_number }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Alternate Mobile -->
+        <div class="form-group">
+          <label for="alternate_mobile_number">Alternate / Emergency Mobile</label>
+          <input type="tel" id="alternate_mobile_number" name="alternate_mobile_number" placeholder="Optional emergency contact number" maxlength="15" value="{{ form_data.alternate_mobile_number|default:'' }}">
+          {% if form_errors.alternate_mobile_number %}
+          <div class="field-error">{{ form_errors.alternate_mobile_number }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="example@domain.com" value="{{ form_data.email|default:'' }}">
+          {% if form_errors.email %}
+          <div class="field-error">{{ form_errors.email }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Joining Date -->
+        <div class="form-group">
+          <label for="joining_date">Joining Date <span class="required">*</span></label>
+          <input type="date" id="joining_date" name="joining_date" required value="{{ form_data.joining_date|default:today_date }}">
+          {% if form_errors.joining_date %}
+          <div class="field-error">{{ form_errors.joining_date }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address">Permanent Address</label>
+          <textarea id="address" name="address" rows="3" placeholder="Enter your permanent home address">{{ form_data.address|default:'' }}</textarea>
+          {% if form_errors.address %}
+          <div class="field-error">{{ form_errors.address }}</div>
+          {% endif %}
+        </div>
+
+        <!-- ID Proof Upload -->
+        <div class="form-group">
+          <label>Government ID Proof (Aadhaar / Passport / Voter ID) <span class="required">*</span></label>
+          <div class="file-input-wrapper" onclick="document.getElementById('id_proof').click()">
+            <svg class="file-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <div class="file-label" id="id_proof_label">Click to upload ID Proof</div>
+            <div class="input-hint">Accepted formats: JPG, PNG, PDF (Max 10MB)</div>
+            <div class="file-selected-name" id="id_proof_filename"></div>
+            <input type="file" id="id_proof" name="id_proof" required accept=".pdf,.jpg,.jpeg,.png" onchange="updateFileName(this, 'id_proof_filename', 'id_proof_label')">
+          </div>
+          {% if form_errors.id_proof %}
+          <div class="field-error">{{ form_errors.id_proof }}</div>
+          {% endif %}
+        </div>
+
+        <!-- Photo Upload -->
+        <div class="form-group">
+          <label>Passport-Size Photo <span class="required">*</span></label>
+          <div class="file-input-wrapper" onclick="document.getElementById('photo').click()">
+            <svg class="file-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="file-label" id="photo_label">Click to upload Photo</div>
+            <div class="input-hint">Accepted formats: JPG, PNG (Max 5MB)</div>
+            <div class="file-selected-name" id="photo_filename"></div>
+            <input type="file" id="photo" name="photo" required accept=".jpg,.jpeg,.png" onchange="updateFileName(this, 'photo_filename', 'photo_label')">
+          </div>
+          {% if form_errors.photo %}
+          <div class="field-error">{{ form_errors.photo }}</div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
+      </form>
+    </div>
+
+    <div class="footer">
+      Powered by InHostel &bull; Secure Resident Registration
+    </div>
+  </div>
+
+  <script>
+    function updateFileName(input, targetId, labelId) {
+      if (input.files && input.files.length > 0) {
+        const file = input.files[0];
+        document.getElementById(targetId).textContent = "✓ Selected: " + file.name;
+        document.getElementById(labelId).textContent = "Change file";
+      }
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function() {
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting Registration...';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+venv/
+.env
+.env.*
+!.env.example
+
+# Node / React Native
+node_modules/
+.expo/
+android/.gradle/
+android/build/
+android/app/build/
+ios/Pods/
+ios/build/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary/export
+*.tmp
+*.bak
+
+# Local artifacts
+*.local
